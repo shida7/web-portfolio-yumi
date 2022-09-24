@@ -77,8 +77,22 @@
           </p>
         </div>
       </div>
+
       <div style="height: 20px"></div>
 
+      <div class="app-bar">
+        <div class="app-bar-title">MENU</div>
+        <div class="app-bar-button-cover">
+          <button onclick="scroller('#hobby')">趣味</button>
+          <button onclick="scroller('#skill')">スキル</button>
+          <button onclick="scroller('#mywork')">制作物</button>
+          <button onclick="scroller('#licence')">帰属</button>
+        </div>
+      </div>
+
+      <div style="height: 20px"></div>
+
+      <div class="card-cover bg-white" id="hobby"></div>
       <div class="card-cover bg-white">
         <h2 class="card-title-cover bg-2 text-light">
           <div class="card-title">Hobby</div>
@@ -134,6 +148,7 @@
       
       <div style="height: 20px"></div>
 
+      <div class="card-cover bg-white" id="skill"></div>
       <div class="card-cover bg-white">
         <h2 class="card-title-cover bg-2 text-light">
           <div class="card-title">Skill</div>
@@ -286,6 +301,7 @@
 
       <div style="height: 20px"></div>
 
+      <div class="card-cover bg-white" id="mywork"></div>
       <div class="card-cover bg-white">
         <h2 class="card-title-cover bg-2 text-light">
           <div class="card-title">My Work</div>
@@ -461,6 +477,7 @@
 
       <div style="height: 20px"></div>
 
+      <div class="card-cover bg-white" id="licence"></div>
       <div class="card-cover bg-white">
         <h2 class="card-title-cover bg-2 text-light">
           <div class="card-title">Licence</div>
@@ -520,7 +537,25 @@
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         },
-      })
+      });
+
+      var TOP_BAR_OFFSET = 48;
+      function scroller(query) {
+        var elements = document.querySelectorAll(query);
+        if (elements.length == 0) {
+          console.error(
+            "Selected query:",
+            query,
+            "are not found on this page."
+          );
+          return;
+        }
+        var rect = elements[0].getBoundingClientRect();
+        window.scrollTo({
+          top: rect.top + window.pageYOffset - TOP_BAR_OFFSET,
+          behavior: "smooth",
+        });
+      }
     </script>
   </body>
 </html>
